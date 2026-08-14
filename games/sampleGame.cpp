@@ -16,11 +16,7 @@ extern "C"
         if (api->input->isPressed(Button::RIGHT)) playerX++;
         if (api->input->isPressed(Button::LEFT))  playerX--;
         if (api->input->isPressed(Button::UP))    playerY--;
-        if (api->input->isPressed(Button::DOWN))
-        {
-            playerY++;
-            api->sound->playFrequency(4, 440.0f, 22050);
-        }
+        if (api->input->isPressed(Button::DOWN))  playerY++;
         api->render->drawRectangle(playerX, playerY, playerX + 10, playerY + 10, 255);
     }
 }

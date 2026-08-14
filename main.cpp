@@ -49,10 +49,16 @@ int main()
 
     while (!display.shouldClose()) 
     {
+        int samplesNeeded = synthBuffer.getFreeSpace();
         pcInput.update();
         cartLoader.update(&osAPI);
-        pcAudio.update();
         display.render(globalRender);
+        for (int i = 0; i < samplesNeeded; i++) 
+        {
+            globalMusic.tickSample();
+            synthBuffer.pushSample(globalSound.getSample());
+        }
+        pcAudio.update();
 
         globalRender.clear();
         globalInput.update();
