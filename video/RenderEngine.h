@@ -4,6 +4,7 @@
 #include <cmath>
 
 // FROM README: The font file in this archive was created by Andrew Tyler www.AndrewTyler.net and font@andrewtyler.net
+// The following is a bitmap for ascii characters 33-?
 const uint8_t minecraftia_regular_font[][8] = {
     { 0b10000000, 0b10000000, 0b10000000, 0b10000000, 0b10000000, 0b00000000, 0b10000000, 0b00000000, }, // !
     { 0b10100000, 0b10100000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, }, // "
@@ -105,11 +106,13 @@ const uint8_t minecraftia_regular_font[][8] = {
 
 class RenderEngine
 {
-public:
+public: // Width and height define the size of the screen and buffer saved in memory
     static constexpr int SCREEN_WIDTH = 480;
     static constexpr int SCREEN_HEIGHT = 320;
 
 private:
+    // Two buffers are used to avoid screen tearing
+    // One is drawn to while the other is being rendered
     uint8_t bufferOne[SCREEN_HEIGHT][SCREEN_WIDTH];
     uint8_t bufferTwo[SCREEN_HEIGHT][SCREEN_WIDTH];
 
@@ -124,6 +127,7 @@ public:
         clear();
     }
 
+    // The simplest form of the render engine. Write a color value to a certain pixel.
     void drawPixel(int x, int y, uint8_t color)
     {
         if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
@@ -132,6 +136,7 @@ public:
         }
     }
 
+    // Draw a line from a -> b (x1,y1) -> (x2,y2)
     void drawLine(int x1, int y1, int x2, int y2, int lineThickness, uint8_t color)
     {
         int dx = std::abs(x2 - x1);
@@ -222,6 +227,7 @@ public:
     {
         int index = -1;
 
+        // Offset from the ascii characters I stored in this file
         if (c >= ' ' && c <= '~') index = c - 33;
 
         if (index == -1) return; 
@@ -251,7 +257,7 @@ public:
     }
 
     void drawText(int x, int y, const char* text, int scale, uint8_t color)
-    {
+    { // TODO: Debug issue with spacing vertically (y scales, but it shouldnt?)
         int cursorX = x;
         int i = 0;
         
@@ -268,6 +274,7 @@ public:
         std::memset(drawBuffer, 0, SCREEN_HEIGHT * SCREEN_WIDTH);
     }
 
+    // Swaps drawing and rendering buffer
     void swapBuffers()
     {
         auto tempPtr  = drawBuffer;
