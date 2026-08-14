@@ -1,0 +1,5 @@
+.vscode
+docs
+*.dll
+*.exe
+*.ttf
