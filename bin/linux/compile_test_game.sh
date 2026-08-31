@@ -1,0 +1,1 @@
+g++ -fPIC -shared ./games/sampleGame.cpp -o ./games/game.so -O3

@@ -14,15 +14,15 @@
 #include "./emulator/RaylibGameLoader.h"
 
 RenderEngine globalRender;
-SoundEngine globalSound;
-MusicAPI globalMusic(&globalSound);
+SoundEngine  globalSound;
+MusicAPI     globalMusic(&globalSound);
 InputManager globalInput;
 
-AudioBuffer synthBuffer;
+AudioBuffer       synthBuffer;
 RaylibVideoDriver display;
 RaylibAudioDriver pcAudio;
 RaylibInputDriver pcInput;
-GameLoader cartLoader;
+GameLoader        cartLoader;
 
 
 SystemAPI buildAPI() 
@@ -45,7 +45,14 @@ int main()
 
     SystemAPI osAPI = buildAPI();
 
-    cartLoader.loadGame("games/game.dll", &osAPI);
+    #if defined(_WIN32)
+        cartLoader.loadGame("games/game.dll", &osAPI);
+    #elif defined(__linux__) || defined(__APPLE__)
+        cartLoader.loadGame("games/game.so", &osAPI);
+    #else
+        // TODO: Path for standalone Pico 2 OS (e.g., loading from flash/SD card)
+        cartLoader.loadGame("games/game.bin", &osAPI); 
+    #endif
 
     while (!display.shouldClose()) 
     {

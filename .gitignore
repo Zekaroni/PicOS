@@ -1,5 +1,8 @@
 .vscode
+tests/executables
 docs
+main
 *.dll
+*.so
 *.exe
 *.ttf

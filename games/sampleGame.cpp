@@ -1,22 +1,33 @@
 #include "../system/SystemAPI.h"
 
+#if defined(_WIN32)
+    #define GAME_EXPORT __declspec(dllexport)
+#elif defined(__linux__) || defined(__APPLE__)
+    #define GAME_EXPORT __attribute__((visibility("default")))
+#else
+    // Fallback for standalone Pico 2 OS
+    #define GAME_EXPORT
+#endif
+
 int playerX = 10;
+
 int playerY = 10;
 
 extern "C" 
 {
-    __declspec(dllexport) void game_init(SystemAPI* api) 
+    GAME_EXPORT void game_init(SystemAPI* api) 
     {
         playerX = 50;
         playerY = 50;
     }
 
-    __declspec(dllexport) void game_update(SystemAPI* api) 
+    GAME_EXPORT void game_update(SystemAPI* api) 
     {
         if (api->input->isPressed(Button::RIGHT)) playerX++;
         if (api->input->isPressed(Button::LEFT))  playerX--;
         if (api->input->isPressed(Button::UP))    playerY--;
         if (api->input->isPressed(Button::DOWN))  playerY++;
+        
         api->render->drawRectangle(playerX, playerY, playerX + 10, playerY + 10, 255);
     }
 }

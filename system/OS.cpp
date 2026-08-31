@@ -1,8 +1,8 @@
 #include "../system/SystemAPI.h"
 
 RenderEngine globalRenderEngine;
-SoundEngine globalSound;
-MusicAPI globalMusic(&globalSound);
+SoundEngine  globalSound;
+MusicAPI     globalMusic(&globalSound);
 InputManager inputManager;
 
 SystemAPI buildAPI() 
