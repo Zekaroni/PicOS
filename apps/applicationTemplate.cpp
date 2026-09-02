@@ -11,12 +11,12 @@
 
 extern "C" 
 {
-    GAME_EXPORT void game_init(SystemAPI* api) 
+    GAME_EXPORT void application_init(SystemAPI* api) 
     {
         // Ran when the game is first ran
     }
 
-    GAME_EXPORT void game_update(SystemAPI* api) 
+    GAME_EXPORT void application_update(SystemAPI* api) 
     {
         // Main game loop
     }

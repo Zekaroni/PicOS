@@ -14,13 +14,13 @@ int playerY = 10;
 
 extern "C" 
 {
-    GAME_EXPORT void game_init(SystemAPI* api) 
+    GAME_EXPORT void application_init(SystemAPI* api) 
     {
         playerX = 50;
         playerY = 50;
     }
 
-    GAME_EXPORT void game_update(SystemAPI* api) 
+    GAME_EXPORT void application_update(SystemAPI* api) 
     {
         if (api->input->isPressed(Button::RIGHT)) playerX+=10;
         if (api->input->isPressed(Button::LEFT))  playerX-=10;

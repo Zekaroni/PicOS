@@ -1,1 +1,1 @@
-g++ -fPIC -shared ./games/sampleGame.cpp -o ./bin/game.so -O3
+g++ -fPIC -shared ./apps/sampleGame.cpp -o ./bin/game.so -O3

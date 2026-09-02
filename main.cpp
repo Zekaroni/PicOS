@@ -11,7 +11,7 @@
 #include "./emulator/RaylibVideoDriver.h"
 #include "./emulator/RaylibAudioDriver.h"
 #include "./emulator/RaylibInputDriver.h"
-#include "./emulator/RaylibGameLoader.h"
+#include "./emulator/RaylibAppLoader.h"
 
 RenderEngine globalRender;
 SoundEngine  globalSound;
@@ -22,7 +22,7 @@ AudioBuffer       synthBuffer;
 RaylibVideoDriver display;
 RaylibAudioDriver pcAudio;
 RaylibInputDriver pcInput;
-GameLoader        cartLoader;
+ApplcationLoader  cartLoader;
 
 
 SystemAPI buildAPI() 
@@ -46,12 +46,12 @@ int main()
     SystemAPI osAPI = buildAPI();
 
     #if defined(_WIN32)
-        cartLoader.loadGame("games/game.dll", &osAPI);
+        cartLoader.loadApplication("games/game.dll", &osAPI);
     #elif defined(__linux__) || defined(__APPLE__)
-        cartLoader.loadGame("games/game.so", &osAPI);
+        cartLoader.loadApplication("bin/game.so", &osAPI);
     #else
         // TODO: Path for standalone Pico 2 OS (e.g., loading from flash/SD card)
-        cartLoader.loadGame("games/game.bin", &osAPI); 
+        cartLoader.loadApplication("games/game.bin", &osAPI); 
     #endif
 
     while (!display.shouldClose()) 
