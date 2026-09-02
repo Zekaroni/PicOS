@@ -10,7 +10,6 @@
 #endif
 
 int playerX = 10;
-
 int playerY = 10;
 
 extern "C" 
@@ -23,10 +22,10 @@ extern "C"
 
     GAME_EXPORT void game_update(SystemAPI* api) 
     {
-        if (api->input->isPressed(Button::RIGHT)) playerX++;
-        if (api->input->isPressed(Button::LEFT))  playerX--;
-        if (api->input->isPressed(Button::UP))    playerY--;
-        if (api->input->isPressed(Button::DOWN))  playerY++;
+        if (api->input->isPressed(Button::RIGHT)) playerX+=10;
+        if (api->input->isPressed(Button::LEFT))  playerX-=10;
+        if (api->input->isPressed(Button::UP))    playerY-=10;
+        if (api->input->isPressed(Button::DOWN))  playerY+=10;
         
         api->render->drawRectangle(playerX, playerY, playerX + 10, playerY + 10, 255);
     }

@@ -1,7 +1,7 @@
 .vscode
-tests/executables
 docs
-main
+bin/*
+!bin/bin
 *.dll
 *.so
 *.exe

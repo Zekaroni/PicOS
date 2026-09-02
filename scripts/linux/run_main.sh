@@ -1,5 +1,5 @@
 # Run from the project root
-g++ main.cpp -o main \
+g++ main.cpp -o ./bin/main \
     $(pkg-config --cflags --libs raylib)
 
-./main
+./bin/main
