@@ -1,6 +1,6 @@
 #pragma once
 #include "raylib.h"
-#include "../sound/AudioBuffer.h"
+#include "../../sound/AudioBuffer.h"
 
 class RaylibAudioDriver
 {

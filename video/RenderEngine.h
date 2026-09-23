@@ -181,14 +181,19 @@ public:
         }
     }
 
-    void drawRectangle(int x1, int y1, int x2, int y2, uint8_t color)
+    void drawRectangle(int x1, int y1, int width, int height, uint8_t color)
     {
-        for (int j = y1; j < y2; j++)
+        int startX = std::max(0, x1);
+        int startY = std::max(0, y1);
+        int endX = std::min(SCREEN_WIDTH, x1 + width);
+        int endY = std::min(SCREEN_HEIGHT, y1 + height);
+        
+        int overflowWidth = endX - startX;
+        if (overflowWidth <= 0 || startY >= endY) return;
+
+        for (int i = startY; i < endY; i++)
         {
-            for (int i = x1; i < x2; i++)
-            {
-                drawPixel(i,j,color);
-            }
+            std::fill(&drawBuffer[i][startX], &drawBuffer[i][startX + overflowWidth], color);
         }
     }
 
@@ -249,7 +254,7 @@ public:
                     {
                         int xStart = x + (col * scale);
                         int yStart = (y + row) * scale;
-                        drawRectangle(xStart, yStart, xStart + scale, yStart + scale, color);
+                        drawRectangle(xStart, yStart, scale, scale, color);
                     }
                 }
             }

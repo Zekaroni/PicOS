@@ -9,24 +9,28 @@
     #define GAME_EXPORT
 #endif
 
-int playerX = 10;
-int playerY = 10;
+int playerX;
+int playerY;
+int playerSize;
+int speed;
 
 extern "C" 
 {
     GAME_EXPORT void application_init(SystemAPI* api) 
     {
-        playerX = 50;
-        playerY = 50;
+        playerX    = 50;
+        playerY    = 50;
+        playerSize = 30;
+        speed      = 1;
     }
 
     GAME_EXPORT void application_update(SystemAPI* api) 
     {
-        if (api->input->isPressed(Button::RIGHT)) playerX+=10;
-        if (api->input->isPressed(Button::LEFT))  playerX-=10;
-        if (api->input->isPressed(Button::UP))    playerY-=10;
-        if (api->input->isPressed(Button::DOWN))  playerY+=10;
+        if (api->input->isPressed(Button::RIGHT)) playerX+=speed;
+        if (api->input->isPressed(Button::LEFT))  playerX-=speed;
+        if (api->input->isPressed(Button::UP))    playerY-=speed;
+        if (api->input->isPressed(Button::DOWN))  playerY+=speed;
         
-        api->render->drawRectangle(playerX, playerY, playerX + 10, playerY + 10, 255);
+        api->render->drawRectangle(playerX, playerY, playerSize, playerSize, 255);
     }
 }

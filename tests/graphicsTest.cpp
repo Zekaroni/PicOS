@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../video/RenderEngine.h"
-#include "../emulator/RaylibVideoDriver.h"
+#include "../emulator/raylib/RaylibVideoDriver.h"
 
 int main()
 {
@@ -14,11 +14,13 @@ int main()
     
     while (!display.shouldClose())
     {
+        renderEngine.drawRectangle(0,0,300,200,0b11000011);
         renderEngine.drawCircle(circleX, 100, 50, 5, 0b11000);
         renderEngine.drawText(0, 0, "!\"#$%&'()*+'-./:;<=>?@[]^_`{|}~", 2, 0b11100000);
         renderEngine.drawText(0, 8, "0123456789", 2, 0b11100000);
         renderEngine.drawText(0, 16, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2, 0b11100000);
         renderEngine.drawText(0, 24, "abcdefghijklmnopqrstuvwxyz", 2, 0b11100000);
+
 
         
         circleX++;

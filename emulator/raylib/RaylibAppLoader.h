@@ -9,7 +9,7 @@
 #include <dlfcn.h>
 #endif
 
-#include "../system/IApplicationLoader.h"
+#include "../../system/IApplicationLoader.h"
 
 class ApplcationLoader: public IApplicationLoader {
 private:
