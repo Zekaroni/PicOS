@@ -7,10 +7,10 @@ class GraphicsLibrary
     /** Graphic Library Main Notes
      * Have a main overaching GUI interface
      * - Grids
-     * - - 
+     *   - 
      * - Containing local boxes
-     * - - Think containers tkinter
-     * - - Everything is in relative space
+     *   - Think containers tkinter
+     *   - Everything is in relative space
      * - 
      */
 private:
@@ -18,6 +18,6 @@ private:
 public:
     GraphicsLibrary()
     {
-        
+
     }
-};
+}; 
